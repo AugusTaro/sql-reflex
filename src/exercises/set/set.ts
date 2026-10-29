@@ -53,15 +53,15 @@ const exercises: Exercise[] = [
     id: "set-004",
     title: "差集合（EXCEPT）",
     prompt:
-      "一度も注文明細（order_items）に登場していない商品の id を、products の id から order_items の product_id を引く形で取得してください。",
+      "一度も注文していないユーザーの id を、users の id から orders の user_id を引く形で取得してください。",
     datasetId: "ecommerce",
     difficulty: 1,
     tags: ["Set", "EXCEPT"],
     type: "query",
     solutionSql: `
-      SELECT id FROM products
+      SELECT id FROM users
       EXCEPT
-      SELECT product_id FROM order_items
+      SELECT user_id FROM orders
     `,
   },
 ];
