@@ -65,6 +65,7 @@ src/
 
 MVP（Phase 1〜10 + 暴走対策）実装済み。ブラウザで問題を解き、正誤判定・進捗保存まで動く。リモートは GitHub（AugusTaro/sql-reflex）、main への push で GitHub Pages に自動デプロイされる（`.github/workflows/deploy.yml`）。確定タスクは消化済みで、次の候補は `docs/やりたいことリスト/memo.md` を参照。
 
+- 問題は 64 問（Basic / JOIN / Aggregate / Set / Subquery / Window / CTE / Mutation / DDL）。応用情報技術者試験の SQL 範囲のうち SQLite で練習できるものを網羅する方針。難易度は 1〜2 中心で、難しさより反復しやすさを優先する
 - 問題は `src/exercises/<category>/*.ts` に置くだけで自動収集される。追加手順は `docs/問題の追加方法.md`
 - 全問題は `pnpm test` で実 SQLite により検証される（solutionSql が動く / mutation の verifySql が真になる）
 - 採点は列名を比較しない（列の並び・値・行数のみ）。prompt で列の並びを明記する

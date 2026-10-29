@@ -141,6 +141,43 @@ const exercises: Exercise[] = [
       JOIN users b ON a.country = b.country AND a.id < b.id
     `,
   },
+  {
+    id: "join-010",
+    title: "ユーザーごとの paid 注文数（0 件も含む）",
+    prompt:
+      "全ユーザーについて、name と status が 'paid' の注文の件数を取得してください。paid 注文が無いユーザーも 0 として含めます。列は name、件数の順とします。",
+    datasetId: "ecommerce",
+    difficulty: 2,
+    tags: ["JOIN", "LEFT JOIN", "ON と WHERE"],
+    type: "query",
+    solutionSql: `
+      SELECT u.name, COUNT(o.id)
+      FROM users u
+      LEFT JOIN orders o ON o.user_id = u.id AND o.status = 'paid'
+      GROUP BY u.id
+    `,
+    hints: [
+      "status の条件を WHERE に書くと、注文の無いユーザーの行（右側が NULL）が消えてしまいます",
+      "外部結合で右側の表を絞り込む条件は ON に書きます",
+    ],
+  },
+  {
+    id: "join-011",
+    title: "カテゴリごとの商品数（0 件も含む）",
+    prompt:
+      "全カテゴリについて、カテゴリの name と商品数を取得してください。商品が無いカテゴリも 0 として含めます。列は name、商品数の順とします。",
+    datasetId: "ecommerce",
+    difficulty: 2,
+    tags: ["JOIN", "LEFT JOIN", "COUNT"],
+    type: "query",
+    solutionSql: `
+      SELECT c.name, COUNT(p.id)
+      FROM categories c
+      LEFT JOIN products p ON p.category_id = c.id
+      GROUP BY c.id
+    `,
+    hints: ["COUNT(*) は NULL だけの行も数えます。右側の列を COUNT すると 0 になります"],
+  },
 ];
 
 export default exercises;

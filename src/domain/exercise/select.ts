@@ -5,7 +5,17 @@ export const ALL_CATEGORIES = "all";
 export const categoryOf = (exercise: Exercise): string => exercise.tags[0] ?? "Other";
 
 /** UI に並べる推奨順。ここに無いカテゴリは末尾に名前順で続く */
-const CATEGORY_ORDER = ["Basic", "JOIN", "Aggregate", "Subquery", "CTE", "Mutation"];
+const CATEGORY_ORDER = [
+  "Basic",
+  "JOIN",
+  "Aggregate",
+  "Set",
+  "Subquery",
+  "Window",
+  "CTE",
+  "Mutation",
+  "DDL",
+];
 
 const categoryRank = (category: string): number => {
   const index = CATEGORY_ORDER.indexOf(category);

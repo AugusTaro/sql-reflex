@@ -30,14 +30,8 @@ describe("categoryOf / listCategories", () => {
   });
 
   it("推奨順に無いカテゴリは末尾に名前順で並ぶ", () => {
-    const withExtra = [...all, ex("z-001", "Window"), ex("y-001", "Expression")];
-    expect(listCategories(withExtra)).toEqual([
-      "Basic",
-      "JOIN",
-      "Aggregate",
-      "Expression",
-      "Window",
-    ]);
+    const withExtra = [...all, ex("z-001", "Zeta"), ex("y-001", "Expression")];
+    expect(listCategories(withExtra)).toEqual(["Basic", "JOIN", "Aggregate", "Expression", "Zeta"]);
   });
 });
 

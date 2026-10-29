@@ -102,6 +102,22 @@ const exercises: Exercise[] = [
       )
     `,
   },
+  {
+    id: "sub-007",
+    title: "親になっていないカテゴリ（NOT IN と NULL）",
+    prompt:
+      "他のカテゴリの parent_id として参照されていないカテゴリの name を取得してください。NOT IN を使います。",
+    datasetId: "ecommerce",
+    difficulty: 2,
+    tags: ["Subquery", "NOT IN"],
+    type: "query",
+    solutionSql:
+      "SELECT name FROM categories WHERE id NOT IN (SELECT parent_id FROM categories WHERE parent_id IS NOT NULL)",
+    hints: [
+      "parent_id には NULL が含まれます。NOT IN のリストに NULL が混ざると結果が 0 行になります",
+      "副問合せで NULL を除外します",
+    ],
+  },
 ];
 
 export default exercises;

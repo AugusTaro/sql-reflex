@@ -14,10 +14,9 @@
 
 ### MVP 後の問題カテゴリ（企画書 §13）
 
-- Window Function（ROW_NUMBER / RANK / DENSE_RANK / PARTITION BY / LAG / LEAD）
+- 応用情報の範囲で未収録: ANY / ALL（SQLite 非対応）、RIGHT / FULL OUTER JOIN、参照制約違反と CASCADE（`PRAGMA foreign_keys` が必要）、トランザクション・権限・カーソル（アプリの仕組み上出題不可）
 - Expression（CASE / COALESCE / NULL）
 - recursive CTE
-- Mutation 問題の追加（基盤は MVP で作る、問題は後）
 - Dataset 追加: company / sns
 
 ### ゲーム性（企画書 §16）

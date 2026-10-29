@@ -46,25 +46,6 @@ const exercises: Exercise[] = [
     `,
   },
   {
-    id: "cte-003",
-    title: "1 から 10 の連番",
-    prompt: "再帰 CTE を使って 1 から 10 までの整数を 1 列で昇順に取得してください。",
-    datasetId: "ecommerce",
-    difficulty: 2,
-    tags: ["CTE", "再帰CTE"],
-    type: "query",
-    solutionSql: `
-      WITH RECURSIVE seq(n) AS (
-        SELECT 1
-        UNION ALL
-        SELECT n + 1 FROM seq WHERE n < 10
-      )
-      SELECT n FROM seq
-    `,
-    orderMatters: true,
-    hints: ["WITH RECURSIVE seq(n) AS (初期行 UNION ALL 再帰部) の形です"],
-  },
-  {
     id: "cte-004",
     title: "Electronics 配下のカテゴリ",
     prompt:
