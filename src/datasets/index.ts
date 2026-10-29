@@ -9,7 +9,7 @@ import ecommerceSeed from "./ecommerce/seed.sql?raw";
 export const datasets: Record<string, Dataset> = {
   ecommerce: {
     id: "ecommerce",
-    name: "EC サイト（users / categories / products / orders / order_items）",
+    name: "EC サイト（users / categories / products / orders / order_items / vip_users）",
     schemaSql: ecommerceSchema,
     seedSql: ecommerceSeed,
   },

@@ -9,6 +9,7 @@ memo からタスクに昇格したもののリスト。未着手/進行中/完�
 
 ## 完了済みタスク
 
+- [x] ER 図表示 — schema.sql を正規表現で解析（`src/domain/dataset/schema.ts`）し、依存の深さで列を分けた SVG を自前描画（`src/components/ErDiagram/`）。結果表示の右半分に常時表示
 - [x] 問題追加（応用情報の SQL 範囲に合わせた再編）— 述語 / 集合演算 / ウィンドウ関数 / DDL・制約 / INSERT SELECT を追加し 64 問に。権限・トランザクション・埋込み SQL は SQLite で扱えないため対象外
 - [x] Phase 10: 静的ホスティングして公開 — GitHub Pages（`.github/workflows/deploy.yml`、main への push で自動デプロイ）
 - [x] Phase 1: SQLite WASM 単体 PoC — ブラウザで `SELECT * FROM users;` を実行して ResultSet を取得する

@@ -318,3 +318,84 @@ body {
   font-size: 0.78rem;
   color: var(--muted);
 }
+
+/* ---- 結果 + ER 図（右カラム下部を左右に分割） ---- */
+
+.app__bottom {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+@media (max-width: 1200px) {
+  .app__bottom {
+    grid-template-columns: 1fr;
+  }
+}
+
+.app__er {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+}
+
+.app__er h3 {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.er {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 960px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 14px;
+}
+
+.er__box {
+  fill: #fff;
+  stroke: var(--border);
+}
+
+.er__header {
+  fill: #eef2ff;
+}
+
+.er__name {
+  font-weight: 700;
+  fill: #3730a3;
+}
+
+.er__row text {
+  fill: var(--text);
+}
+
+.er__row--pk text {
+  font-weight: 700;
+}
+
+.er__type {
+  fill: var(--muted);
+}
+
+.er__key {
+  fill: var(--primary);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.er__edge {
+  fill: none;
+  stroke: var(--primary);
+  stroke-width: 1.5;
+  opacity: 0.8;
+}
+
+#er-arrow path {
+  fill: var(--primary);
+}

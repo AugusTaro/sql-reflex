@@ -27,7 +27,6 @@
 
 ### 学習補助
 
-- ER 図表示: schema.sql の `CREATE TABLE` / `REFERENCES` を正規表現で拾い、Mermaid `erDiagram` テキストへ純関数で変換して SchemaViewer に「ER 図」タブとして出す（DB 定義 → 図の変換が関数的にできる想定。優先度低）
 - SchemaViewer に SELECT 補完用のテーブル・列名を渡す（CodeMirror lang-sql の `schema` オプション）
 
 ### 性能・基盤
