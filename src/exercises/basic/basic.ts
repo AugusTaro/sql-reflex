@@ -1,0 +1,82 @@
+import type { Exercise } from "../../domain/exercise/types";
+
+const exercises: Exercise[] = [
+  {
+    id: "basic-001",
+    title: "日本のユーザー",
+    prompt: "国（country）が 'JP' のユーザーの name と email を取得してください。",
+    datasetId: "ecommerce",
+    difficulty: 1,
+    tags: ["Basic", "WHERE"],
+    type: "query",
+    solutionSql: "SELECT name, email FROM users WHERE country = 'JP'",
+  },
+  {
+    id: "basic-002",
+    title: "1万円以上の商品を高い順に",
+    prompt: "price が 10000 以上の商品の name と price を、price の降順で取得してください。",
+    datasetId: "ecommerce",
+    difficulty: 1,
+    tags: ["Basic", "ORDER BY"],
+    type: "query",
+    solutionSql: "SELECT name, price FROM products WHERE price >= 10000 ORDER BY price DESC",
+    orderMatters: true,
+  },
+  {
+    id: "basic-003",
+    title: "注文ステータスの種類",
+    prompt: "orders に存在する status の値を重複なしで取得してください。",
+    datasetId: "ecommerce",
+    difficulty: 1,
+    tags: ["Basic", "DISTINCT"],
+    type: "query",
+    solutionSql: "SELECT DISTINCT status FROM orders",
+  },
+  {
+    id: "basic-004",
+    title: "2024年後半以降の注文",
+    prompt:
+      "ordered_at が '2024-06-01' 以降の注文の id, user_id, ordered_at を、ordered_at の昇順で取得してください。",
+    datasetId: "ecommerce",
+    difficulty: 1,
+    tags: ["Basic", "WHERE", "ORDER BY"],
+    type: "query",
+    solutionSql:
+      "SELECT id, user_id, ordered_at FROM orders WHERE ordered_at >= '2024-06-01' ORDER BY ordered_at",
+    orderMatters: true,
+  },
+  {
+    id: "basic-005",
+    title: "在庫切れの商品",
+    prompt: "stock が 0 の商品の name を取得してください。",
+    datasetId: "ecommerce",
+    difficulty: 1,
+    tags: ["Basic", "WHERE"],
+    type: "query",
+    solutionSql: "SELECT name FROM products WHERE stock = 0",
+  },
+  {
+    id: "basic-006",
+    title: "高額商品トップ3",
+    prompt: "price が高い順に上位 3 件の商品の name と price を取得してください。",
+    datasetId: "ecommerce",
+    difficulty: 1,
+    tags: ["Basic", "LIMIT"],
+    type: "query",
+    solutionSql: "SELECT name, price FROM products ORDER BY price DESC LIMIT 3",
+    orderMatters: true,
+  },
+  {
+    id: "basic-007",
+    title: "クーポン未使用の注文",
+    prompt: "coupon_code が NULL の注文の id と ordered_at を取得してください。",
+    datasetId: "ecommerce",
+    difficulty: 1,
+    tags: ["Basic", "NULL"],
+    type: "query",
+    solutionSql: "SELECT id, ordered_at FROM orders WHERE coupon_code IS NULL",
+    hints: ["NULL の比較には = ではなく IS NULL を使います"],
+  },
+];
+
+export default exercises;

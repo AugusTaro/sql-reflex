@@ -63,5 +63,9 @@ src/
 
 ## 現状
 
-第一ウェーブ（ドキュメント + 環境構築）完了直後。空の SPA がビルド・型チェック・Lint・テストを通る状態。
-次は tsks.md 先頭の「Phase 1: SQLite WASM 単体 PoC」から着手する。リモートリポジトリは未作成（ローカル git のみ）。
+MVP（Phase 1〜9 + 暴走対策）実装済み。ブラウザで問題を解き、正誤判定・進捗保存まで動く。残る確定タスクは Phase 10（静的ホスティング）のみ。リモートリポジトリは未作成（ローカル git のみ）。
+
+- 問題は `src/exercises/<category>/*.ts` に置くだけで自動収集される。追加手順は `docs/問題の追加方法.md`
+- 全問題は `pnpm test` で実 SQLite により検証される（solutionSql が動く / mutation の verifySql が真になる）
+- 採点は列名を比較しない（列の並び・値・行数のみ）。prompt で列の並びを明記する
+- Worker は Exercise を知らず `WorkerRequest`（setupSql / userSql / grading）だけを受け取る
