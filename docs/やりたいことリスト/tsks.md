@@ -5,12 +5,11 @@ memo からタスクに昇格したもののリスト。未着手/進行中/完�
 
 ## 未着手タスク
 
-- [ ] Phase 10: 静的ホスティングして公開
-
 ## 進行中のタスク
 
 ## 完了済みタスク
 
+- [x] Phase 10: 静的ホスティングして公開 — GitHub Pages（`.github/workflows/deploy.yml`、main への push で自動デプロイ）
 - [x] Phase 1: SQLite WASM 単体 PoC — ブラウザで `SELECT * FROM users;` を実行して ResultSet を取得する
 - [x] Phase 2: Web Worker 化 — UI → Worker → SQLite の経路を成立させる（`src/sqlite/worker.ts` / `client.ts`）
 - [x] Phase 3: Dataset 読み込み — schema.sql / seed.sql から毎回新品の `:memory:` DB を生成する

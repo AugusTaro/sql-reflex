@@ -34,4 +34,3 @@
 ### 性能・基盤
 
 - seed が大きくなったら事前生成 SQLite DB を deserialize する方式へ切替（企画書 §6）
-- 静的ホスティング先の選定（Cloudflare Pages / GitHub Pages など）

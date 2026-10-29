@@ -63,7 +63,7 @@ src/
 
 ## 現状
 
-MVP（Phase 1〜9 + 暴走対策）実装済み。ブラウザで問題を解き、正誤判定・進捗保存まで動く。残る確定タスクは Phase 10（静的ホスティング）のみ。リモートリポジトリは未作成（ローカル git のみ）。
+MVP（Phase 1〜10 + 暴走対策）実装済み。ブラウザで問題を解き、正誤判定・進捗保存まで動く。リモートは GitHub（AugusTaro/sql-reflex）、main への push で GitHub Pages に自動デプロイされる（`.github/workflows/deploy.yml`）。確定タスクは消化済みで、次の候補は `docs/やりたいことリスト/memo.md` を参照。
 
 - 問題は `src/exercises/<category>/*.ts` に置くだけで自動収集される。追加手順は `docs/問題の追加方法.md`
 - 全問題は `pnpm test` で実 SQLite により検証される（solutionSql が動く / mutation の verifySql が真になる）
