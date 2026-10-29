@@ -9,6 +9,7 @@ memo からタスクに昇格したもののリスト。未着手/進行中/完�
 
 ## 完了済みタスク
 
+- [x] 問題追加（応用情報の SQL 範囲に合わせた再編）— 述語 / 集合演算 / ウィンドウ関数 / DDL・制約 / INSERT SELECT を追加し 64 問に。権限・トランザクション・埋込み SQL は SQLite で扱えないため対象外
 - [x] Phase 10: 静的ホスティングして公開 — GitHub Pages（`.github/workflows/deploy.yml`、main への push で自動デプロイ）
 - [x] Phase 1: SQLite WASM 単体 PoC — ブラウザで `SELECT * FROM users;` を実行して ResultSet を取得する
 - [x] Phase 2: Web Worker 化 — UI → Worker → SQLite の経路を成立させる（`src/sqlite/worker.ts` / `client.ts`）

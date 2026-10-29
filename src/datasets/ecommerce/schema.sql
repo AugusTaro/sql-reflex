@@ -35,3 +35,9 @@ CREATE TABLE order_items (
   quantity INTEGER NOT NULL,
   unit_price INTEGER NOT NULL     -- 注文時点の単価
 );
+
+-- INSERT ... SELECT の練習用。初期状態では空
+CREATE TABLE vip_users (
+  user_id INTEGER PRIMARY KEY REFERENCES users(id),
+  name TEXT NOT NULL
+);

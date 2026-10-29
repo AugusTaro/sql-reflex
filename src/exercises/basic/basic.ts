@@ -77,6 +77,77 @@ const exercises: Exercise[] = [
     solutionSql: "SELECT id, ordered_at FROM orders WHERE coupon_code IS NULL",
     hints: ["NULL の比較には = ではなく IS NULL を使います"],
   },
+  {
+    id: "basic-008",
+    title: "価格が範囲内の商品",
+    prompt: "price が 5000 以上 20000 以下の商品の name と price を取得してください。",
+    datasetId: "ecommerce",
+    difficulty: 1,
+    tags: ["Basic", "BETWEEN"],
+    type: "query",
+    solutionSql: "SELECT name, price FROM products WHERE price BETWEEN 5000 AND 20000",
+    hints: ["BETWEEN a AND b は両端を含みます"],
+  },
+  {
+    id: "basic-009",
+    title: "名前に Book を含む商品",
+    prompt: "name に 'Book' という文字列を含む商品の name を取得してください。",
+    datasetId: "ecommerce",
+    difficulty: 1,
+    tags: ["Basic", "LIKE"],
+    type: "query",
+    solutionSql: "SELECT name FROM products WHERE name LIKE '%Book%'",
+    hints: ["% は任意の文字列、_ は任意の 1 文字にマッチします"],
+  },
+  {
+    id: "basic-010",
+    title: "英語圏のユーザー",
+    prompt:
+      "country が 'US' または 'UK' のユーザーの name と country を IN を使って取得してください。",
+    datasetId: "ecommerce",
+    difficulty: 1,
+    tags: ["Basic", "IN"],
+    type: "query",
+    solutionSql: "SELECT name, country FROM users WHERE country IN ('US', 'UK')",
+  },
+  {
+    id: "basic-011",
+    title: "クーポンを使った有効な注文",
+    prompt:
+      "status が 'paid' または 'shipped' で、かつ coupon_code が NULL でない注文の id, status, coupon_code を取得してください。",
+    datasetId: "ecommerce",
+    difficulty: 1,
+    tags: ["Basic", "AND / OR"],
+    type: "query",
+    solutionSql:
+      "SELECT id, status, coupon_code FROM orders WHERE (status = 'paid' OR status = 'shipped') AND coupon_code IS NOT NULL",
+    hints: ["AND は OR より優先されます。OR の条件は括弧で囲みます"],
+  },
+  {
+    id: "basic-012",
+    title: "国ごと・登録日の新しい順",
+    prompt:
+      "全ユーザーの name, country, created_at を、country の昇順、同じ country の中では created_at の降順で取得してください。",
+    datasetId: "ecommerce",
+    difficulty: 1,
+    tags: ["Basic", "ORDER BY"],
+    type: "query",
+    solutionSql:
+      "SELECT name, country, created_at FROM users ORDER BY country ASC, created_at DESC",
+    orderMatters: true,
+  },
+  {
+    id: "basic-013",
+    title: "明細の小計",
+    prompt:
+      "各注文明細（order_items）について、id と小計（quantity × unit_price）を取得してください。列は id、小計の順とします。",
+    datasetId: "ecommerce",
+    difficulty: 1,
+    tags: ["Basic", "式"],
+    type: "query",
+    solutionSql: "SELECT id, quantity * unit_price AS subtotal FROM order_items",
+    hints: ["SELECT 句には列だけでなく式も書けます。AS で別名を付けられます"],
+  },
 ];
 
 export default exercises;

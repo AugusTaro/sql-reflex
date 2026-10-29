@@ -56,6 +56,50 @@ const exercises: Exercise[] = [
       SELECT COUNT(*) = 13 FROM orders
     `,
   },
+  {
+    id: "mut-004",
+    title: "全商品の在庫を増やす",
+    prompt: "全商品の stock をそれぞれ 10 増やしてください。",
+    datasetId: "ecommerce",
+    difficulty: 1,
+    tags: ["Mutation", "UPDATE"],
+    type: "mutation",
+    solutionSql: "UPDATE products SET stock = stock + 10",
+    verifySql: `
+      SELECT SUM(stock) = 344 FROM products
+      UNION ALL
+      SELECT MIN(stock) = 10 FROM products
+      UNION ALL
+      SELECT COUNT(*) = 13 FROM products
+    `,
+    hints: ["WHERE を付けなければ全行が対象になります"],
+  },
+  {
+    id: "mut-005",
+    title: "検索結果を別テーブルへコピーする",
+    prompt:
+      "2 回以上注文したユーザーの id と name を、INSERT ... SELECT で vip_users（user_id, name）にコピーしてください。",
+    datasetId: "ecommerce",
+    difficulty: 2,
+    tags: ["Mutation", "INSERT SELECT"],
+    type: "mutation",
+    solutionSql: `
+      INSERT INTO vip_users (user_id, name)
+      SELECT u.id, u.name
+      FROM users u
+      JOIN orders o ON o.user_id = u.id
+      GROUP BY u.id
+      HAVING COUNT(*) >= 2
+    `,
+    verifySql: `
+      SELECT COUNT(*) = 5 FROM vip_users
+      UNION ALL
+      SELECT COUNT(*) = 5 FROM vip_users v JOIN users u ON u.id = v.user_id AND u.name = v.name
+      UNION ALL
+      SELECT COUNT(*) = 0 FROM vip_users WHERE user_id IN (5, 7, 8)
+    `,
+    hints: ["INSERT INTO 表 (列...) SELECT ... の形です。VALUES は使いません"],
+  },
 ];
 
 export default exercises;

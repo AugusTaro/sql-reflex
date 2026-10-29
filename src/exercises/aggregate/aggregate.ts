@@ -134,6 +134,29 @@ const exercises: Exercise[] = [
     `,
     hints: ["まず注文ごとの合計を出し、それをユーザーで集約します（2 段階の GROUP BY）"],
   },
+  {
+    id: "agg-010",
+    title: "COUNT(*) と COUNT(列) の違い",
+    prompt:
+      "orders の総件数と、coupon_code が NULL でない件数を 1 行で取得してください。列は総件数、クーポン件数の順とします。",
+    datasetId: "ecommerce",
+    difficulty: 1,
+    tags: ["Aggregate", "COUNT"],
+    type: "query",
+    solutionSql: "SELECT COUNT(*), COUNT(coupon_code) FROM orders",
+    hints: ["COUNT(列名) は NULL を数えません"],
+  },
+  {
+    id: "agg-011",
+    title: "商品価格の最小・最大・合計",
+    prompt:
+      "products 全体の price の最小値、最大値、合計を 1 行で取得してください。列はこの順とします。",
+    datasetId: "ecommerce",
+    difficulty: 1,
+    tags: ["Aggregate", "MIN / MAX", "SUM"],
+    type: "query",
+    solutionSql: "SELECT MIN(price), MAX(price), SUM(price) FROM products",
+  },
 ];
 
 export default exercises;
