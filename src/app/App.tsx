@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useMemo, useReducer, useRef } from "react";
+import { ErDiagram } from "../components/ErDiagram/ErDiagram";
 import { ExercisePanel } from "../components/ExercisePanel/ExercisePanel";
 import { Progress } from "../components/Progress/Progress";
 import { ResultTable } from "../components/ResultTable/ResultTable";
 import { SchemaViewer } from "../components/SchemaViewer/SchemaViewer";
 import { SqlEditor } from "../components/SqlEditor/SqlEditor";
 import { findDataset } from "../datasets";
+import { parseSchema } from "../domain/dataset/schema";
 import { toSetupSql } from "../domain/dataset/types";
 import {
   ALL_CATEGORIES,
@@ -179,6 +181,8 @@ export const App = () => {
   const solvedIds = solvedIdsOf(state.progress);
   const solvedInList = list.filter((e) => solvedIds.has(e.id)).length;
   const dataset = exercise ? findDataset(exercise.datasetId) : undefined;
+  // schema.sql の解析は Dataset が変わったときだけ行う
+  const schema = useMemo(() => parseSchema(dataset?.schemaSql ?? ""), [dataset?.schemaSql]);
 
   const lastResponse =
     state.run.status === "done" && state.run.exerciseId === exercise?.id
@@ -288,22 +292,30 @@ export const App = () => {
 
             <RunStatus run={state.run} exerciseId={exercise.id} readyForNext={readyForNext} />
 
-            {lastResponse?.type === "result" && (
+            <div className="app__bottom">
               <div className="app__results">
-                <ResultTable
-                  result={lastResponse.result}
-                  truncated={lastResponse.truncated}
-                  caption="あなたの結果"
-                />
-                {!lastResponse.correct && lastResponse.expected && (
-                  <ResultTable
-                    result={lastResponse.expected}
-                    truncated={lastResponse.expectedTruncated}
-                    caption="期待される結果"
-                  />
+                {lastResponse?.type === "result" && (
+                  <>
+                    <ResultTable
+                      result={lastResponse.result}
+                      truncated={lastResponse.truncated}
+                      caption="あなたの結果"
+                    />
+                    {!lastResponse.correct && lastResponse.expected && (
+                      <ResultTable
+                        result={lastResponse.expected}
+                        truncated={lastResponse.expectedTruncated}
+                        caption="期待される結果"
+                      />
+                    )}
+                  </>
                 )}
               </div>
-            )}
+              <section className="app__er">
+                <h3>ER 図</h3>
+                <ErDiagram schema={schema} />
+              </section>
+            </div>
           </section>
         </main>
       )}
