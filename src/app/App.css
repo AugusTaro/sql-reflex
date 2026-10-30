@@ -22,8 +22,9 @@ body {
   margin: 0;
 }
 
+/* ページ全体はスクロールさせず、左カラムと右カラム下部をそれぞれ独立してスクロールする */
 .app {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -70,6 +71,7 @@ body {
 
 .app__main {
   flex: 1;
+  min-height: 0;
   display: grid;
   grid-template-columns: minmax(280px, 1fr) minmax(0, 2fr);
   gap: 1rem;
@@ -77,8 +79,19 @@ body {
 }
 
 @media (max-width: 900px) {
+  /* 1 カラム時はページ全体のスクロールに戻す */
+  .app {
+    height: auto;
+    min-height: 100vh;
+  }
+
   .app__main {
     grid-template-columns: 1fr;
+  }
+
+  .app__side,
+  .app__bottom {
+    overflow: visible;
   }
 }
 
@@ -93,6 +106,12 @@ body {
   flex-direction: column;
   gap: 1rem;
   min-width: 0;
+  min-height: 0;
+}
+
+/* 左カラム（問題 + スキーマ）は独立してスクロール */
+.app__side {
+  overflow-y: auto;
 }
 
 .exercise-panel,
@@ -189,6 +208,7 @@ body {
 
 .app__editor {
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .sql-editor .cm-editor {
@@ -321,7 +341,11 @@ body {
 
 /* ---- 結果 + ER 図（右カラム下部を左右に分割） ---- */
 
+/* エディタ・ツールバーは固定し、結果 + ER 図だけスクロール */
 .app__bottom {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 1rem;
